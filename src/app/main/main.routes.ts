@@ -18,6 +18,12 @@ export const mainRoutes: Routes = [
             { path: 'function', loadChildren: './function/function.module#FunctionModule' },
 
             { path: 'role', loadChildren: './role/role.module#RoleModule' },
+
+            { path: 'log', loadChildren: './log/log.module#LogModule' },
+
+            { path: 'import', loadChildren: './import/import.module#ImportModule' },
+
+            { path: 'color', loadChildren: './color/color.module#ColorModule' },
         ]
     }
 ]

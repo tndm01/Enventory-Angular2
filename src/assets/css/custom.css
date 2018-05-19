@@ -2,7 +2,7 @@
 html , body{
 	
  height:100%;
- 
+ font-family: 'Times New Roman', Times, serif;
 }
  
 .full-width {
@@ -4253,3 +4253,26 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
     background-color: #ffff !important;
 }
 /** /bootstrap-datetimepicker **/
+.ui-autocomplete-items{
+    list-style: none;
+    max-width: 240px;
+    padding: 5px;
+    border: 1px solid #cdcd;
+    border-radius: 5px;
+}
+.ui-autocomplete-items li{
+    padding: 10px;
+}
+.ui-autocomplete-items li:hover{
+    padding: 10px;
+    background: #186ba0;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.ui-inputtext{
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #cdcd;
+    width: 210px;
+}

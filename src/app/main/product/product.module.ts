@@ -13,7 +13,7 @@ import { SimpleTinyComponent } from '../../shared/simple-tiny/simple-tiny.compon
 
 @NgModule({
   imports: [
-        CommonModule,
+    CommonModule,
     ProductRouter,
     FormsModule,
     PaginationModule,
