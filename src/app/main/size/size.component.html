@@ -6,7 +6,7 @@
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group">
-        <input type="text" class="form-control" name="filter" (keyup.enter)="loadData()" [(ngModel)]="filter" placeholder="Gõ tên đơn vị tính...">
+        <input type="text" class="form-control" name="filter" (keyup.enter)="loadData()" [(ngModel)]="filter" placeholder="Gõ tên size...">
         <span class="input-group-btn">
             <button class="btn btn-default" (click)="loadData()" type="button">Tìm!</button>
          </span>
@@ -33,21 +33,17 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Tên đơn vị</th>
-              <th>Code</th>
-              <th>Mô tả</th>
+              <th>Tên Size</th>
               <th>#</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let unit of units">
-              <td>{{unit.UnitId}}</td>
+              <td>{{unit.ID}}</td>
               <td>{{unit.Name}}</td>
-              <td>{{unit.UnitCode}}</td>
-              <td>{{unit.Description}}</td>
               <td>
-                <button class="btn btn-primary" (click)="showEdit(unit.UnitId)"><i class="fa fa-pencil-square-o"></i></button>
-                <button class="btn btn-danger" (click)="deleteItem(unit.UnitId)"><i class="fa fa-trash"></i></button>
+                <button class="btn btn-primary" (click)="showEdit(unit.ID)"><i class="fa fa-pencil-square-o"></i></button>
+                <button class="btn btn-danger" (click)="deleteItem(unit.ID)"><i class="fa fa-trash"></i></button>
 
               </td>
             </tr>
@@ -68,7 +64,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Thêm/Sửa đơn vị tính</h4>
+        <h4 class="modal-title pull-left">Thêm/Sửa Size</h4>
         <button type="button" class="close pull-right" (click)="modalAddEdit.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -78,28 +74,12 @@
           *ngIf="entity">
 
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên đơn vị</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên size</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
               <input type="text" #name="ngModel" [(ngModel)]="entity.Name" required minlength="2" name="name" class="form-control">
               <small [hidden]="name.valid || (name.pristine && !addEditForm.submitted)" class="text-danger">
                 Bạn phải nhập tên ít nhất 2 ký tự
               </small>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã Code</label>
-            <div class="col-md-9 col-sm-9 col-xs-12">
-              <input type="text" #unitCode="ngModel" [(ngModel)]="entity.UnitCode" required name="unitCode" class="form-control">
-              <small [hidden]="unitCode.valid || (unitCode.pristine && !addEditForm.submitted)" class="text-danger">
-                Bạn phải nhập mã code
-              </small>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">Mô tả</label>
-            <div class="col-md-9 col-sm-9 col-xs-12">
-              <textarea type="text" #description="ngModel" [(ngModel)]="entity.Description" name="description" class="form-control"></textarea>
             </div>
           </div>
           <div class="ln_solid"></div>

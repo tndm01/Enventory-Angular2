@@ -24,6 +24,10 @@ export const mainRoutes: Routes = [
             { path: 'import', loadChildren: './import/import.module#ImportModule' },
 
             { path: 'color', loadChildren: './color/color.module#ColorModule' },
+
+            { path: 'unit', loadChildren: './unit/unit.module#UnitModule' },
+
+            { path: 'size', loadChildren: './size/size.module#SizeModule' },
         ]
     }
 ]
