@@ -28,6 +28,8 @@ export const mainRoutes: Routes = [
             { path: 'unit', loadChildren: './unit/unit.module#UnitModule' },
 
             { path: 'size', loadChildren: './size/size.module#SizeModule' },
+
+            { path: 'supplier', loadChildren: './supplier/supplier.module#SupplierModule' },
         ]
     }
 ]

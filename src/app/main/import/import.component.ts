@@ -20,36 +20,52 @@ export class ImportComponent implements OnInit {
   public entity: any;
   public entityDetail: any;
   public productSearch: any;
-  public product:any;
+  public colorSearch: any;
+  public sizeSearch: any;
+  public unitSearch: any;
 
   constructor(private _dataService: DataService) { }
 
-  filteredCountriesSingle: any[];
   filteredProductsSingle: any[];
-
-  BOOKS: any[] = [
-    { 'id': 1, 'store_id': 1, 'Name': 'Áo thun nam tay dài' },
-    { 'id': 2, 'store_id': 1, 'Name': 'Áo thun nam tay ngắn ' },
-    { 'id': 3, 'store_id': 2, 'Name': 'Virgin Islands, British' },
-    { 'id': 4, 'store_id': 2, 'Name': 'Venezuela' }
-  ];
+  filteredColorsSingle: any[];
+  filteredSizesSingle: any[];
+  filteredUnitsSingle: any[];
 
   ngOnInit() {
   }
 
-  filterCountrySingle(event) {
-    let query = event.query;
-    this.filteredCountriesSingle = this.BOOKS.filter(x => x.Name.includes(query));
-  }
-
   filterProductSingle(event) {
     let query = event.query;
-    this._dataService.get('/api/product/SearchProductByKey?code=' + query).subscribe((response:any[]) => {
+    this._dataService.get('/api/product/SearchProductByKey?code=' + query).subscribe((response: any[]) => {
       this.productSearch = response;
       this.filteredProductsSingle = this.productSearch;
     });
   }
+
+  filterColorSingle(event) {
+    let query = event.query;
+    this._dataService.get('/api/color/SearchColorByKey?code=' + query).subscribe((response: any[]) => {
+      this.colorSearch = response;
+      this.filteredColorsSingle = this.colorSearch;
+    });
+  }
+
+  filterSizeSingle(event) {
+    let query = event.query;
+    this._dataService.get('/api/size/SearchSizeByKey?code=' + query).subscribe((response: any[]) => {
+      this.sizeSearch = response;
+      this.filteredSizesSingle = this.sizeSearch;
+    });
+  }
   
+  filterUnitSingle(event) {
+    let query = event.query;
+    this._dataService.get('/api/unit/SearchUnitByKey?code=' + query).subscribe((response: any[]) => {
+      this.unitSearch = response;
+      this.filteredUnitsSingle = this.unitSearch;
+    });
+  }
+
   showAddModal(id: number) {
     this.entity = {};
     this.modalAddEdit.show();

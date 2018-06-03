@@ -12,11 +12,13 @@ import {LoggedInUser} from '../core/domain/loggedin.user';
 })
 export class MainComponent implements OnInit {
 
+  public baseFolder: string = SystemConstants.BASE_API;
   public user: LoggedInUser;
   constructor(private utilityService: UtilityService,private authenService : AuthenService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem(SystemConstants.CURRENT_USER));
+    console.log(this.user);
   }
 
   logout(){
