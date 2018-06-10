@@ -103,34 +103,29 @@
                 <div class="form-group">
                   <label class="col-md-2 col-sm-2 col-xs-12">Tên nhà cung cấp</label>
                   <div class="col-md-10 col-sm-10 col-xs-12">
-                    <input type="text" #name="ngModel" [(ngModel)]="entity.FullName" required minlength="3" name="name" class="form-control">
-                    <small [hidden]="name.valid || (name.pristine && !addEditForm.submitted)" class="text-danger">
-                      Bạn phải nhập tên ít nhất 3 ký tự
-                    </small>
+                    <p-autoComplete (onSelect)="getSupplierAutocomplete($event)" [suggestions]="filteredSuppliersSingle" (completeMethod)="filterSupplierSingle($event)"
+                      field="Name" [size]="30" [minLength]="1"></p-autoComplete>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-md-2 col-sm-2 col-xs-12">Địa chỉ</label>
                   <div class="col-md-10 col-sm-10 col-xs-12">
-                    <input type="text" #username="ngModel" [(ngModel)]="entity.UserName" required name="username" class="form-control">
-                    <small [hidden]="username.valid || (username.pristine && !addEditForm.submitted)" class="text-danger">
-                      Bạn phải nhập tài khoản
-                    </small>
+                    <input type="text" #address="ngModel" [(ngModel)]="entity.Address" name="address" class="form-control">
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-md-2 col-sm-2 col-xs-12">Người nhận hàng</label>
                   <div class="col-md-10 col-sm-10 col-xs-12">
-                    <input type="text" #address="ngModel" [(ngModel)]="entity.Address" name="address" class="form-control">
+                    <input type="text" #receiveName="ngModel" [(ngModel)]="entity.ReceiveName" name="receiveName" class="form-control">
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-md-2 col-sm-2 col-xs-12">Diễn giải</label>
                   <div class="col-md-10 col-sm-10 col-xs-12">
-                    <input type="text" #address="ngModel" [(ngModel)]="entity.Address" name="address" class="form-control">
+                    <input type="text" #note="ngModel" [(ngModel)]="entity.Note" name="note" class="form-control">
                   </div>
                 </div>
               </div>
@@ -139,14 +134,14 @@
                 <div class="form-group height-s">
                   <label class="col-md-4 col-sm-4 col-xs-12">Số phiếu</label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
-                    <input type="text" class="form-control">
+                    <input type="text" [(ngModel)]="entity.Number" class="form-control">
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-md-4 col-sm-4 col-xs-12">Ngày lập phiếu</label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
-                    <input type="text" class="form-control">
+                    <input type="text" [(ngModel)]="entity.CreatedDate" class="form-control">
                   </div>
                 </div>
               </div>
@@ -159,23 +154,23 @@
                   <div class="col-md-12">
                     <div class="col-xs-2">
                       <label>Tên hàng</label>
-                      <p-autoComplete [suggestions]="filteredProductsSingle" (completeMethod)="filterProductSingle($event)" field="Name" [size]="30"
-                      [minLength]="1"></p-autoComplete>
+                      <p-autoComplete (onSelect)="getProductAutocomplete($event)" [(ngModel)]="test" [suggestions]="filteredProductsSingle" (completeMethod)="filterProductSingle($event)"
+                        field="Name" [size]="30" [minLength]="1"></p-autoComplete>
                     </div>
                     <div class="col-xs-2">
                       <label for="ex2">Màu sắc</label>
-                      <p-autoComplete [suggestions]="filteredColorsSingle" (completeMethod)="filterColorSingle($event)" field="Name" [size]="30"
-                      [minLength]="1"></p-autoComplete>
+                      <p-autoComplete (onSelect)="getColorAutocomplete($event)" [suggestions]="filteredColorsSingle" (completeMethod)="filterColorSingle($event)"
+                        field="Name" [size]="30" [minLength]="1"></p-autoComplete>
                     </div>
                     <div class="col-xs-2">
                       <label for="ex2">Kích cở</label>
-                      <p-autoComplete [suggestions]="filteredSizesSingle" (completeMethod)="filterSizeSingle($event)" field="Name" [size]="30"
-                      [minLength]="1"></p-autoComplete>
+                      <p-autoComplete (onSelect)="getSizeAutocomplete($event)" [suggestions]="filteredSizesSingle" (completeMethod)="filterSizeSingle($event)"
+                        field="Name" [size]="30" [minLength]="1"></p-autoComplete>
                     </div>
                     <div class="col-xs-2">
                       <label for="ex2">Đơn vị</label>
-                      <p-autoComplete [suggestions]="filteredUnitsSingle" (completeMethod)="filterUnitSingle($event)" field="Name" [size]="30"
-                      [minLength]="1"></p-autoComplete>
+                      <p-autoComplete (onSelect)="getUnitAutocomplete($event)" [suggestions]="filteredUnitsSingle" (completeMethod)="filterUnitSingle($event)"
+                        field="Name" [size]="30" [minLength]="1"></p-autoComplete>
                     </div>
                     <div class="col-xs-1">
                       <label for="ex2">Số lượng</label>
@@ -190,37 +185,37 @@
                       <input class="form-control" #total name="total" [(ngModel)]="entity.Total" type="text">
                     </div>
                     <div class="col-xs-1">
-                      <button type="submit" class="btn btn-success mt-24">Thêm</button>
+                      <button type="submit" class="btn btn-success mt-24" (click)="addImportDetails()">Thêm</button>
                     </div>
                   </div>
-                  <div class="col-md-12" style="margin-top: 40px;">
+                  <div class="col-md-12" style="margin-top: 40px;" *ngFor="let item of detailImports">
                     <div class="col-xs-2">
                       <label>Tên hàng</label>
-                      <input type="text" #productId="ngModel" [(ngModel)]="entity.ProductId" required name="productId" class="form-control">
+                      <span class="form-control">{{item.ProductName}}</span>
                     </div>
                     <div class="col-xs-2">
                       <label for="ex2">Màu sắc</label>
-                      <input class="form-control" #caption="ngModel" name="caption" [(ngModel)]="entity.Caption" type="text">
+                      <span class="form-control">{{item.ColorName}}</span>
                     </div>
                     <div class="col-xs-2">
                       <label for="ex2">Kích cở</label>
-                      <input class="form-control" name="caption" [(ngModel)]="entity.Size" type="text">
+                      <span class="form-control">{{item.SizeName}}</span>
                     </div>
                     <div class="col-xs-2">
                       <label for="ex2">Đơn vị</label>
-                      <input class="form-control" name="caption" [(ngModel)]="entity.Dvt" type="text">
+                      <span class="form-control">{{item.UnitName}}</span>
                     </div>
                     <div class="col-xs-1">
                       <label for="ex2">Số lượng</label>
-                      <input class="form-control" name="caption" [(ngModel)]="entity.Quantity" type="text">
+                      <span class="form-control">{{item.Quantity}}</span>
                     </div>
                     <div class="col-xs-1">
                       <label for="ex2">Giá</label>
-                      <input class="form-control" name="caption" [(ngModel)]="entity.Price" type="text">
+                      <span class="form-control">{{item.Price}}</span>
                     </div>
                     <div class="col-xs-1">
                       <label for="ex2">Thành tiền</label>
-                      <input class="form-control" name="caption" [(ngModel)]="entity.Total" type="text">
+                      <span class="form-control">{{item.Total}}</span>
                     </div>
                     <div class="col-xs-1">
                       <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Sửa">
@@ -250,4 +245,3 @@
       </div>
     </div>
   </div>
-  
