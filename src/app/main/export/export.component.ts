@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ViewChild, Pipe, PipeTransform } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { NotificationService } from '../../core/services/notification.service';
@@ -14,11 +15,11 @@ import { $ } from '../../../../node_modules/protractor';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-import',
-  templateUrl: './import.component.html',
-  styleUrls: ['./import.component.css']
+  selector: 'app-export',
+  templateUrl: './export.component.html',
+  styleUrls: ['./export.component.css']
 })
-export class ImportComponent implements OnInit {
+export class ExportComponent implements OnInit {
   @ViewChild('modalAddEdit') public modalAddEdit: ModalDirective;
   @ViewChild('AutoComplete') AutoComplete: AutoComplete;
 
@@ -27,10 +28,10 @@ export class ImportComponent implements OnInit {
   public pageSize: number = 10;
   public pageDisplay: number = 10;
   public filter: string = '';
-  public imports: any[];
+  public exports: any[];
 
   public entity: any;
-  public importDetails: any[] = [];
+  public exportDetails: any[] = [];
   public productSearch: any;
   public colorSearch: any;
   public sizeSearch: any;
@@ -78,7 +79,7 @@ export class ImportComponent implements OnInit {
   filteredSuppliersSingle: any[];
 
   ngOnInit() {
-    this.loadDataImport();
+    this.loadDataexport();
   }
 
   filterProductSingle(event) {
@@ -132,35 +133,35 @@ export class ImportComponent implements OnInit {
 
   //Show edit form
   public showEdit(id: string) {
-    this._dataService.get('/api/import/detail/' + id).subscribe((response: any) => {
+    this._dataService.get('/api/export/detail/' + id).subscribe((response: any) => {
       this.entity = response;
-      this.importDetails = this.entity.ImportDetails;
+      this.exportDetails = this.entity.exportDetails;
       this.modalAddEdit.show();
     }, error => this._dataService.handleError(error));
   }
 
   public saveChange(valid: boolean) {
-    if (this.importDetails.length == 0 || this.importDetails == null)
-      return this._notificationService.printWarningMessage(MessageContstants.MESSAGEIMPORTDETAIL);
+    if (this.exportDetails.length == 0 || this.exportDetails == null)
+      return this._notificationService.printWarningMessage(MessageContstants.MESSAGEEXPORTDETAIL);
     if (valid) {
-      if (this.entity.ImportId == undefined) {
-        this._dataService.post('/api/import/add', JSON.stringify(this.entity)).subscribe((response) => {
+      if (this.entity.exportId == undefined) {
+        this._dataService.post('/api/export/add', JSON.stringify(this.entity)).subscribe((response) => {
           this.modalAddEdit.hide();
           this._notificationService.printSuccessMessage(MessageContstants.CREATED_OK_MSG);
-          this.loadDataImport();
+          this.loadDataexport();
         }, error => this._dataService.handleError(error));
       } else {
-        this._dataService.post('/api/import/update', JSON.stringify(this.entity)).subscribe((response) => {
+        this._dataService.post('/api/export/update', JSON.stringify(this.entity)).subscribe((response) => {
           this.modalAddEdit.hide();
           this._notificationService.printSuccessMessage(MessageContstants.UPDATED_OK_MSG);
-          this.loadDataImport();
+          this.loadDataexport();
         }, error => this._dataService.handleError(error));
       }
     }
   }
 
-  public addImportDetails() {
-    var obj = this.importDetails.filter(item => item.ProductId === this.iEdit);
+  public addexportDetails() {
+    var obj = this.exportDetails.filter(item => item.ProductId === this.iEdit);
     if (obj.length > 0) {
       this.productName = obj[0].ProductName == undefined ? this.productName : obj[0].ProductName;
       this.colorName = obj[0].ColorName == undefined ? this.colorName : obj[0].ColorName;
@@ -181,20 +182,20 @@ export class ImportComponent implements OnInit {
       return this._notificationService.printWarningMessage(MessageContstants.MESSAGEPRICE);
 
     if (obj.length > 0) {
-      var index = this.importDetails.map(function (data) { return data.ProductId; }).indexOf(this.iEditAllow);
-      this.importDetails[index].ProductId = this.productId;
-      this.importDetails[index].ProductName = this.productName;
-      this.importDetails[index].ColorName = this.colorName;
-      this.importDetails[index].SizeName = this.sizeName;
-      this.importDetails[index].SizeCode = this.sizeCode;
-      this.importDetails[index].ColorCode = this.colorCode;
-      this.importDetails[index].SizeId = this.sizeId;
-      this.importDetails[index].UnitName = this.unitName;
-      this.importDetails[index].ColorId = this.colorId;
-      this.importDetails[index].UnitId = this.unitId;
-      this.importDetails[index].Quantity = this.entity.Quantity;
-      this.importDetails[index].Price = this.entity.Price;
-      this.importDetails[index].Total = this.entity.Total;
+      var index = this.exportDetails.map(function (data) { return data.ProductId; }).indexOf(this.iEditAllow);
+      this.exportDetails[index].ProductId = this.productId;
+      this.exportDetails[index].ProductName = this.productName;
+      this.exportDetails[index].ColorName = this.colorName;
+      this.exportDetails[index].SizeName = this.sizeName;
+      this.exportDetails[index].SizeCode = this.sizeCode;
+      this.exportDetails[index].ColorCode = this.colorCode;
+      this.exportDetails[index].SizeId = this.sizeId;
+      this.exportDetails[index].UnitName = this.unitName;
+      this.exportDetails[index].ColorId = this.colorId;
+      this.exportDetails[index].UnitId = this.unitId;
+      this.exportDetails[index].Quantity = this.entity.Quantity;
+      this.exportDetails[index].Price = this.entity.Price;
+      this.exportDetails[index].Total = this.entity.Total;
       this.clearValue();
     } else {
       var model = {
@@ -213,10 +214,10 @@ export class ImportComponent implements OnInit {
         Price: this.entity.Price,
         Total: this.entity.Total,
       }
-      this.importDetails.push(model);
-      this.entity.ImportDetails = this.importDetails;
-      if (this.importDetails.length > 0) {
-        this.importDetails.forEach(item => {
+      this.exportDetails.push(model);
+      this.entity.exportDetails = this.exportDetails;
+      if (this.exportDetails.length > 0) {
+        this.exportDetails.forEach(item => {
           this.totalAllMoney += item.Total;
         });
       }
@@ -227,7 +228,7 @@ export class ImportComponent implements OnInit {
   }
 
   clearValueButtonAdd() {
-    this.importDetails = [];
+    this.exportDetails = [];
     this.suggestionSupplier = null;
     if (this.autoSupplier != undefined)
       this.autoSupplier.inputFieldValue = "";
@@ -295,14 +296,14 @@ export class ImportComponent implements OnInit {
   }
 
   deleteItemById(ID: any) {
-    this.importDetails = this.importDetails.filter(item => item.ID !== ID);
+    this.exportDetails = this.exportDetails.filter(item => item.ID !== ID);
   }
 
   editItemById(ID: any) {
     this.iEdit = 0;
     //Set value in prime autocomplete
-    var arrImportDetails = this.importDetails;
-    var result = arrImportDetails.find(obj => {
+    var arrexportDetails = this.exportDetails;
+    var result = arrexportDetails.find(obj => {
       return obj.ID === ID
     });
     this.productId = result.ProductId;
@@ -321,26 +322,26 @@ export class ImportComponent implements OnInit {
     this.entity.Total = result.Total;
   }
 
-  loadDataImport() {
-    this._dataService.get('/api/import/getall?page=' + this.pageIndex + '&pageSize=' + this.pageSize + '&filter=' + this.filter)
+  loadDataexport() {
+    this._dataService.get('/api/export/getall?page=' + this.pageIndex + '&pageSize=' + this.pageSize + '&filter=' + this.filter)
       .subscribe((response: any) => {
         this.pageIndex = response.PageIndex;
         this.pageSize = response.PageSize;
         this.totalRow = response.TotalRows;
-        this.imports = response.Items;
+        this.exports = response.Items;
       }, error => this._dataService.handleError(error));
   }
 
   public pageChanged(event: any): void {
     this.pageIndex = event.page;
-    this.loadDataImport();
+    this.loadDataexport();
   }
 
-  public deleteImport(id: string) {
+  public deleteexport(id: string) {
     this._notificationService.printConfirmationDialog(MessageContstants.CONFIRM_DELETE_MSG, () => {
-      this._dataService.delete('/api/import/delete', 'id', id).subscribe((response: any) => {
+      this._dataService.delete('/api/export/delete', 'id', id).subscribe((response: any) => {
         this._notificationService.printSuccessMessage(MessageContstants.DELETED_OK_MSG);
-        this.loadDataImport();
+        this.loadDataexport();
       }, error => this._dataService.handleError(error));
     });
   }

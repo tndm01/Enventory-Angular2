@@ -4,6 +4,20 @@ html , body{
  height:100%;
  font-family: 'Times New Roman', Times, serif;
 }
+
+.b-g{
+    background: white;
+}
+
+.m-top{
+    margin-top: 10px;
+}
+
+.over-H{
+    overflow: auto;
+    width: 100%;
+    height: 290px;
+}
  
 .full-width {
 	
@@ -50,6 +64,11 @@ html , body{
 }
 .daterangepicker select.monthselect {
     margin-right: 2%
+}
+.text-none{
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
 }
 .daterangepicker td.in-range {
     background: #E4E7EA;
@@ -901,7 +920,7 @@ a:focus {
     background: #F5F7FA
 }
 .line_30 {
-    line-height: 30px
+    line-height: 5px
 }
 .main_menu_side {
     padding: 0

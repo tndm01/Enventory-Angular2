@@ -10,6 +10,13 @@
   min-height: 100%;
   border-radius: 0;
 }
+.import-text{
+    height: 130px;
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: center;
+}
 .show-box{
   border: 1px solid;
   padding: 10px;
@@ -27,9 +34,6 @@ input:focus {
   outline: none !important;
   border-bottom:1px solid blue;
   box-shadow: 0 0 10px #719ECE;
-}
-.line-top{
-  margin-top: 30px;
 }
 .f-right{
   text-align: right !important;

@@ -9,6 +9,7 @@ import { UtilityService } from '../core/services/utility.service';
 import { AuthenService } from '../core/services/authen.service';
 import { SidebarMenuComponent } from '../shared/sidebar-menu/sidebar-menu.component';
 import { TopMenuComponent } from '../shared/top-menu/top-menu.component';
+import { SignalrService } from '../core/services/signalr.service';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { TopMenuComponent } from '../shared/top-menu/top-menu.component';
     RouterModule.forChild(mainRoutes)
   ],
   declarations: [MainComponent, SidebarMenuComponent, TopMenuComponent],
-  providers: [UtilityService, AuthenService]
+  providers: [UtilityService, AuthenService, SignalrService]
 })
 export class MainModule { }

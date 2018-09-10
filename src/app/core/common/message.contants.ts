@@ -7,4 +7,12 @@ export class MessageContstants {
     public static DELETED_OK_MSG = "Xóa thành công";
     public static FORBIDDEN = "Bạn bị chặn truy cập";
     public static MESSAGEFUNCTION = "Vui lòng chọn chức năng";
+    public static MESSAGEPRODUCTNAME = "Vui lòng nhập tên hàng";
+    public static MESSAGECOLORNAME = "Vui lòng nhập tên màu";
+    public static MESSAGESIZENAME = "Vui lòng nhập kích cỡ";
+    public static MESSAGEUNIT = "Vui lòng nhập đơn vị";
+    public static MESSAGEQUANTITY = "Vui lòng nhập số lượng";
+    public static MESSAGEPRICE = "Vui lòng nhập giá";
+    public static MESSAGEIMPORTDETAIL = "Vui lòng nhập chi tiết phiếu nhập";
+    public static MESSAGEEXPORTDETAIL = "Vui lòng nhập chi tiết phiếu xuất";
 }

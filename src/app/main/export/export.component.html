@@ -52,36 +52,36 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let import of imports; let rowIndex=index">
+            <tr *ngFor="let export of exports; let rowIndex=index">
               <td>{{rowIndex + 1}}</td>
               <td>
-                  <span *ngIf="import.Censorship==true" class="badge bg-green">Kích hoạt</span>
-                  <span *ngIf="import.Censorship==false" class="badge bg-red">Khóa</span>
+                  <span *ngIf="export.Censorship==true" class="badge bg-green">Kích hoạt</span>
+                  <span *ngIf="export.Censorship==false" class="badge bg-red">Khóa</span>
               </td>
-              <td>{{import.CreatedAt | date:'dd/MM/yyyy' }}</td>
-              <td>{{import.Code}}</td>
-              <td>{{import.SupplierName}}</td>
-              <td>{{import.TotalAllMoney| number}}</td>
-              <td>{{import.Note}}</td>
-              <td>{{import.CreatedBy}}</td>
+              <td>{{export.CreatedAt | date:'dd/MM/yyyy' }}</td>
+              <td>{{export.Code}}</td>
+              <td>{{export.SupplierName}}</td>
+              <td>{{export.TotalAllMoney| number}}</td>
+              <td>{{export.Note}}</td>
+              <td>{{export.CreatedBy}}</td>
               <td>
-                <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Cập nhật sản phẩm" (click)="showEdit(import.ImportId)">
+                <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Cập nhật sản phẩm" (click)="showEdit(export.exportId)">
                   <i class="fa fa-pencil-square-o"></i>
                 </button>
-                <button class="btn btn-danger" data-placement="top" title="Cập nhật sản phẩm" (click)="deleteImport(import.ImportId)">
+                <button class="btn btn-danger" data-placement="top" title="Cập nhật sản phẩm" (click)="deleteexport(export.exportId)">
                   <i class="fa fa-trash"></i>
                 </button>
               </td>
             </tr>
           </tbody>
         </table>
-        <div *ngIf="imports && imports.length == 0" class="col-md-12">
+        <div *ngIf="exports && exports.length == 0" class="col-md-12">
             <div class="alert alert-info">
               <strong>Thông báo!</strong> Hiện tại chưa có sản phẩm nào trong hệ thống
             </div>
     
           </div>
-          <div *ngIf="imports && imports.length > 0" class="col-md-12">
+          <div *ngIf="exports && exports.length > 0" class="col-md-12">
               <pagination [boundaryLinks]="true" [itemsPerPage]="pageSize" (pageChanged)="pageChanged($event)" [totalItems]="totalRow"
                 [(ngModel)]="pageIndex" class="pagination-sm" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
             </div>
@@ -106,7 +106,7 @@
               *ngIf="entity">
               <div class="col-md-9">
                 <div class="form-group">
-                  <input type="hidden" [(ngModel)]="entity.ImportId" name="id" />
+                  <input type="hidden" [(ngModel)]="entity.exportId" name="id" />
                   <label class="col-md-2 col-sm-2 col-xs-12 m-top">Mã giao dịch</label>
                   <div class="col-md-10 col-sm-10 col-xs-12">
                     <input type="text" readonly #referenceCode="ngModel" [(ngModel)]="entity.ReferenceCode" name="referenceCode" class="form-control">
@@ -202,11 +202,11 @@
                             <input class="form-control" name="total" [(ngModel)]="entity.Total" name="total" type="number">
                           </div>
                           <div class="col-xs-2 f-right">
-                            <a class="btn btn-success mt-24" (click)="addImportDetails()">Thêm</a>
+                            <a class="btn btn-success mt-24" (click)="addexportDetails()">Thêm</a>
                           </div>
                         </div>
-                        <div *ngIf="importDetails.length > 0">
-                            <div class="col-md-12" style="margin-top: 40px;" *ngFor="let item of importDetails" >
+                        <div *ngIf="exportDetails.length > 0">
+                            <div class="col-md-12" style="margin-top: 40px;" *ngFor="let item of exportDetails" >
                                 <div class="col-xs-2">
                                   <label>Tên hàng</label>
                                   <span class="form-control">{{item.ProductName}}</span>
@@ -245,9 +245,9 @@
                                 </div>
                               </div>
                         </div>
-                        <div *ngIf="importDetails.length == 0">
+                        <div *ngIf="exportDetails.length == 0">
                           <div class="text-none">
-                              <span class="text-danger import-text">KHÔNG CÓ SẢN PHẨM</span>
+                              <span class="text-danger export-text">KHÔNG CÓ SẢN PHẨM</span>
                           </div>
                         </div>
                       </div>
