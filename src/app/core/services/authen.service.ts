@@ -15,6 +15,7 @@ export class AuthenService {
     let headers = new Headers();
     headers.append("Content-Type", "application/x-www-form-urlencoded");
     let options = new RequestOptions({ headers: headers });
+    console.log("header", options);
 
     return this._http.post(SystemConstants.BASE_API + '/api/oauth/token', body, options).map((response: Response) => {
       let user: LoggedInUser = response.json();
@@ -65,6 +66,7 @@ export class AuthenService {
       return false;
   }
   hasPermission(functionId: string, action: string): boolean {
+    console.log('1');
     var user = this.getLoggedInUser();
     var result: boolean = false;
     var permission: any[] = JSON.parse(user.permissions);

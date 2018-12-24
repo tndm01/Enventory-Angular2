@@ -7,6 +7,12 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './core/guards/authen.guard';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { PxxxTranslateModule } from '../framework/translate/translate.module';
+import { PxxxImportMatModule } from '../framework/ui-partial/im-material.module';
+import { PxxxPartialModule } from '../framework/ui-partial/ui.module';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -15,11 +21,16 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
   imports: [
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    PxxxTranslateModule.forRoot(),
+    PxxxImportMatModule,
+    HttpClientModule,
+    PxxxPartialModule
   ],
   providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

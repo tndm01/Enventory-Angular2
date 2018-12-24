@@ -1,0 +1,104 @@
+<div *ngIf="data && list?.length > 0" class="table-responsive">
+  <table class="table table-bordered table-striped table-hover table-condensed flip-content pxxx-table dataTable">
+    <thead class="flip-content">
+      <tr>
+
+        <ng-container *ngIf="data.showUser">
+          <th>
+            <div style="min-width: 90px; display: block;">
+              <span class="m-badge m-badge--info m-badge--wide my-1 m--margin-2">ID</span>
+              <span class="m-badge m-badge--success m-badge--wide my-1 m--margin-2">Nickname</span>
+              <span class="m-badge m-badge--warning m-badge--wide my-1 m--margin-2">{{ "USER.display_name" | translate
+                }}</span>
+            </div>
+          </th>
+        </ng-container>
+
+
+        <ng-container *ngFor="let header of data?.columns">
+          <th (click)="sortTable(header);" [style.width.%]="header?.width" [ngClass]="{'sorting' : data.showSort && header?.sortable, 
+                        'sorting_asc': data.showSort && data.sort.field == header?.field && header?.sorting == 'asc',
+                        'sorting_desc': data.showSort && data.sort.field == header?.field && header?.sorting == 'desc',
+                        'text-right': header?.type == 'number'
+                    }">
+            <span>{{header.title}}</span>
+          </th>
+        </ng-container>
+
+        <th class="m-datatable__cell" style="max-width: 20%" [style.width.px]="MAX_BUTTON_IN_ROW * 50" *ngIf="data.events?.length > 0"></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="list?.length > 0">
+      <tr *ngFor="let dt of list; let rowIndex = index">
+        <!-- <ng-container *ngIf="data.showUser">
+          <td style="width: 25%">
+            <pxxx-user-group [record]="dt"></pxxx-user-group>
+          </td>
+        </ng-container> -->
+
+        <td [style.width.%]="key?.width" *ngFor="let key of data?.columns; let _index = index">
+          <div [innerHTML]="dt | PxxxTableHtmlParser:data.columns[_index]:_index"></div>
+          <div *ngIf="key?.functions && key?.functions.length > 0">
+            <ng-container *ngFor="let event of key.functions; let __index = index;">
+              <a *ngIf="dt | PxxxTableShowButtonCol:data.columns[_index]:__index"
+               href="javascript:void(0);" class="btn m-btn m-btn--icon m-btn--square pxxx-btn-action 
+              {{event?.button?.class}} 
+              {{event?.button?.action | pxxxBtnClassDefault}}"
+                [title]="event?.button?.title" matTooltip="{{event?.button?.title}}" [ngClass]="{'m-btn--icon-only show-only-icon': event?.button?.showIconOnly}"
+                [attr.style]="event?.button?.style" (click)="reCall_OnColumn(event?.button?.action, dt, __index);">
+                <i [ngClass]="['la', event?.button | pxxxTableIcon]"></i>
+                <span *ngIf="!event?.button?.showIconOnly">{{event.title}}</span>
+              </a>
+            </ng-container>
+
+          </div>
+        </td>
+        <td *ngIf="data.events?.length > 0" class="text-right">
+          <span [style.width.%]="100">
+            <a *ngFor="let event of dt.Buttons" href="javascript:void(0);" class="btn m-btn m-btn--icon m-btn--square pxxx-btn-action {{event?.class}} {{event?.action | pxxxBtnClassDefault}}"
+              [title]="event?.title" matTooltip="{{event?.title}}" [ngClass]="{'m-btn--icon-only show-only-icon': event?.showIconOnly}"
+              [attr.style]="event?.style" (click)="reCall(event.action, dt);">
+              <i [ngClass]="['la', event | pxxxTableIcon]"></i>
+              <span *ngIf="!event?.showIconOnly">{{event.title}}</span>
+            </a>
+            <span class="btn-group" *ngIf="dt.ButtonInDrop?.length > 0" style="display: inline-block!important;">
+              <a class="btn m-btn m-btn--square m-btn--icon m-btn--icon-only show-only-icon pxxx-btn-action"
+                data-toggle="dropdown" aria-expanded="false" [matMenuTriggerFor]="menu" matTooltip="More...">
+                <li class="la la-ellipsis-v"></li>
+              </a>
+              <mat-menu #menu="matMenu">
+                <!-- <ul class="dropdown-menu" id="toggleBtns__{{rowIndex}}"> -->
+                <span mat-menu-item *ngFor="let event of dt.ButtonInDrop" style="display: inline-block">
+                  <span class="m-demo__preview m-demo__preview--btn">
+                    <a href="javascript:void(0);" class="btn m-btn m-btn--square m-btn--icon pxxx-btn-action  
+                    {{event?.class}} {{event?.action | pxxxBtnClassDefault}}"
+                      [title]="event?.title" matTooltip="{{event?.title}}" [ngClass]="{'m-btn--icon-only show-only-icon': event?.showIconOnly}"
+                      [attr.style]="event?.style" (click)="reCall(event.action, dt);">
+                      <i [ngClass]="['la', event | pxxxTableIcon]"></i>
+                      <span *ngIf="!event?.showIconOnly">{{event.title}}</span>
+                    </a>
+                  </span>
+                </span>
+                <!-- </ul> -->
+              </mat-menu>
+            </span>
+          </span>
+        </td>
+      </tr>
+
+      <tr *ngIf="totalRow.length > 0" class="m--font-bolder">
+        <td class="text-center">{{'total' | translate }}
+        </td>
+        <td [style.width.%]="key?.width" class="text-right" *ngFor="let key of data?.columns; let _index = index"
+          [innerHTML]="totalRow[_index]"></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <pxxx-pagging *ngIf="data.showPagging" #pxxxPagging [pagging]="pagging" (paggingEvent)="onPageChange($event)"></pxxx-pagging>
+</div>
+
+<div *ngIf="!data || list?.length == 0">
+  <pxxx-no-data></pxxx-no-data>
+  <!-- Không có dữ liệu... -->
+</div>

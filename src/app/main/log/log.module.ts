@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { DataService } from '../../core/services/data.service';
-import { NotificationService } from '../../core/services/notification.service';
-import { UploadService } from '../../core/services/upload.service';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { LogComponent } from './log.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { PxxxPartialModule } from '../../../framework/ui-partial/ui.module';
+import { PxxxTableModule } from '../../../framework/ui-partial/pxxx-table/pxxx-table.module';
 
 export const logRoutes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -20,6 +20,9 @@ export const logRoutes: Routes = [
     CommonModule,
     PaginationModule,
     RouterModule.forChild(logRoutes),
+    TranslateModule,
+    PxxxPartialModule,
+    PxxxTableModule
   ],
   declarations: [LogComponent],
   providers: [DataService]

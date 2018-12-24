@@ -1,0 +1,107 @@
+{
+  "please-wait": "Please wait...",
+  "SIGNIN": {
+    "sign-in-title": "Sign in",
+    "remember-me": "Remember me",
+    "sign-in-button": "Sign in",
+    "forget-pass": "Forget password",
+    "sign-up": "Register",
+    "not-have-acc": "Don't have account?",
+    "username": "Username",
+    "password": "Password"
+  },
+  "DASHBOARD":{
+    "DASHBOARD_MAIN":{
+      "total_appointment":"TOTAL APPOINTMENT",
+      "report_overview":"REPORT OVERVIEW",
+      "chart_number_appointment":"BIỂU ĐỒ SỐ LƯỢNG LỆNH KHÁM",
+      "doctor": "Doctor",
+      "patient": "Patient",
+      "login": "Login",
+      "total_deposit": "Total deposit",
+      "chart_number_appointment_2": "Number Appointment",
+      "total_register_new": "Total register new"
+    }
+  },
+  "DOCTOR":{
+    "MANAGE_DOCTOR":{
+      "page_title":"Manage, lock / unlock doctors",
+      "list_Department": "Specialty list"      
+    },
+    "DOCTOR_DETAIL":{
+      "page_title": "Detail doctor"
+    }
+  },
+  "USER":{
+    "change_pass": "Change password",
+    "logout": "Logout"
+  },
+  "ACTION": {
+    "add": "Thêm",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "view": "Xem",
+    "search": "Tìm",
+    "accept": "Chấp nhận",
+    "refuse": "Từ chối",
+    "detail": "Chi tiết",
+    "close": "Đóng",
+    "done": "Xong",
+    "cancel": "Hủy bỏ",
+    "save": "Lưu"
+  },
+  "UNIT": {
+    "minute": "phút"
+  },
+  "VALIDATOR": {
+    "required": "This field is required.",
+    "email": "Please enter a valid email address.",
+    "url": "Please enter a valid URL.",
+    "date": "Please enter a valid date.",
+    "dateISO": "Please enter a valid date (ISO).",
+    "number": "Please enter a valid number.",
+    "digits": "Please enter only digits.",
+    "equalTo": "Please enter the same value again.",
+    "maxlength": "Please enter no more than {0} characters.",
+    "minlength": "Please enter at least {0} characters.",
+    "rangelength": "Please enter a value between {0} and {1} characters long.",
+    "range": "Please enter a value between {0} and {1}.",
+    "max": "Please enter a value less than or equal to {0}.",
+    "min": "Please enter a value greater than or equal to {0}."
+  },
+  "MENU": {
+    "system": "System",
+    "dashboard": "Dashboard",    
+    "appointment": "Lệnh khám",
+    "payment": "Thanh toán",
+    "account": "Tài khoản",
+    "report": "Báo cáo"
+  },
+  "VALIDATOR": {
+    "MINLENGTH": "Số phải nhỏ hơn ${value} ký tự.",
+    "MAXLENGTH": "Số phải lớn hơn ${value} ký tự."
+  },
+  "ERROR": {
+    "MinLength": "Số phải nhỏ hơn ${value} ký tự",
+    "MaxLength": "Số phải lớn hơn ${value} ký tự",
+    "Email": "Email mail chưa đúng định dạng",
+    "Number": "Vui lòng nhập kiểu số",
+    "StringEmpty": "Không được để trống",
+    "PhoneNumber": "Vui lòng nhập đúng số điện thoại",
+    "Alphanumeric": "",
+    "AlphanumericSpace": "",
+    "AlphabeticSpace": "",
+    "Lessthan": "",
+    "Greaterthan": "",
+    "Select": "",
+    "SelectMultiple": "",
+    "Radio": "",
+    "Checkbox": ""
+  },
+  "SYSTEM_ERROR": {
+    "404": "NOT FOUND, PLEASE CHECK YOUR URL AND TRY AGAIN LATER !!!",
+    "500": "SYSTEM ERROR, PLEASE CONTACT ADMIN FOR MORE INFORMATION !!!",
+    "9999": "API-DATA ERROR, PLEASE CONTACT ADMIN FOR MORE INFORMATION !!!",
+    "1001": "YOU ARE NOT PERMISSION FOR THIS ACCESS"
+  }
+}

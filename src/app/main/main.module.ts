@@ -10,15 +10,29 @@ import { AuthenService } from '../core/services/authen.service';
 import { SidebarMenuComponent } from '../shared/sidebar-menu/sidebar-menu.component';
 import { TopMenuComponent } from '../shared/top-menu/top-menu.component';
 import { SignalrService } from '../core/services/signalr.service';
+import { PxxxPartialModule } from '../../framework/ui-partial/ui.module';
+import { TranslateModule } from '@ngx-translate/core';
+
 
 @NgModule({
   imports: [
     CommonModule,
     UserModule,
     HomeModule,
-    RouterModule.forChild(mainRoutes)
+    RouterModule.forChild(mainRoutes),
+    PxxxPartialModule,
+    TranslateModule
   ],
-  declarations: [MainComponent, SidebarMenuComponent, TopMenuComponent],
-  providers: [UtilityService, AuthenService, SignalrService]
+  declarations: [
+    MainComponent, 
+    SidebarMenuComponent, 
+    TopMenuComponent
+  ],
+  providers:
+    [
+      UtilityService,
+      AuthenService,
+      SignalrService
+    ],
 })
 export class MainModule { }

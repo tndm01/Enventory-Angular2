@@ -1,0 +1,55 @@
+<div *ngIf="pagging?.total_record > 0" class="m-datatable m-datatable--default" style="display: flex; width: 100%;">
+  <div class="m-datatable__pager m-datatable--paging-loaded row m--margin-15" style="width: 100%">
+    <ul *ngIf="listPages.length <= 1" class="m-datatable__pager-nav col-md-6 col-lg-6 col-sm-6 col-xs-12 m--align-left">
+    </ul>
+    <ul *ngIf="listPages.length > 1" class="m-datatable__pager-nav col-md-6 col-lg-6 col-sm-6 col-xs-12 m--align-left">
+      <li *ngIf="pagging.page_index > 1" (click)="changePage(1)">
+        <a class="m-datatable__pager-link m-datatable__pager-link--first">
+          <i class="la la-angle-double-left"></i>
+        </a>
+      </li>
+      <li *ngIf="pagging.page_index != 1" (click)="changePage(pagging.page_index > 1 ? pagging.page_index - 1 : 1)">
+        <a class="m-datatable__pager-link m-datatable__pager-link--prev">
+          <i class="la la-angle-left"></i>
+        </a>
+      </li>
+
+      <li *ngFor="let item of listPages" (click)="changePage(item)">
+        <a class="m-datatable__pager-link m-datatable__pager-link-number" [ngClass]="{'m-datatable__pager-link--active': item === pagging.page_index }">
+          {{item}}</a>
+      </li>
+
+
+      <li *ngIf="pagging.page_index < pagging.total_page" (click)="changePage(pagging.page_index < pagging.total_page ? pagging.page_index + 1 : pagging.total_page)">
+        <a title="Next" class="m-datatable__pager-link m-datatable__pager-link--next">
+          <i class="la la-angle-right"></i>
+        </a>
+      </li>
+
+      <li *ngIf="pagging.page_index != pagging.total_page" (click)="changePage(pagging.total_page)">
+        <a title="Last" class="m-datatable__pager-link m-datatable__pager-link--last">
+          <i class="la la-angle-double-right"></i>
+        </a>
+      </li>
+    </ul>
+    <div class="m-datatable__pager-info col-md-6 col-lg-6 col-sm-6 col-xs-12 m--align-right" style="margin: 0">
+      <div class="btn-group bootstrap-select m-datatable__pager-size">
+        <mat-label class="m-datatable__pager-detail">{{display}}</mat-label>
+        <!-- <mat-form-field style="width: 85px;margin-left: 8px;">
+          <mat-select (selectionChange)="changeSize()" [(ngModel)]="pagging.page_size" disableRipple>
+            <mat-option [value]="10">10</mat-option>
+            <mat-option [value]="20">20</mat-option>
+            <mat-option [value]="30">30</mat-option>
+            <mat-option [value]="40">40</mat-option>
+            <mat-option [value]="50">50</mat-option>
+            <mat-option [value]="60">60</mat-option>
+            <mat-option [value]="70">70</mat-option>
+            <mat-option [value]="80">80</mat-option>
+            <mat-option [value]="90">90</mat-option>
+            <mat-option [value]="100">100</mat-option>
+          </mat-select>
+        </mat-form-field> -->
+      </div>
+    </div>
+  </div>
+</div>

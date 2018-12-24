@@ -1,0 +1,43 @@
+export const FusionChartDefault = {
+  // theme: 'fusion',
+  baseFont: 'Roboto',
+  showhovereffect: '1',
+  drawcrossline: '1',
+  formatNumberScale: '0',
+  thousandSeparator: '.',
+  showAlternateHGridColor: '0',
+  showlegend: '1',
+  showPlotBorder: '0',
+  initiallyHidden: '0',
+  usePlotGradientColor: '0',
+  bgColor: 'none',
+  baseFontColor: '#333333',
+  canvasBgColor: '#ffffff',
+  showBorder: '0',
+  showShadow: '0',
+  showCanvasBorder: '0',
+  legendBorderAlpha: '0',
+  legendShadow: '0',
+  showValues: '0',
+
+  divlineAlpha: '100',
+  divlineColor: '#999999',
+  divlineThickness: '1',
+  divLineIsDashed: '1',
+  divLineDashLen: '1',
+  divLineGapLen: '1',
+
+  numVisiblePlot: '40',
+
+  flatScrollBars: '1',
+  scrollheight: '14',
+  scrollShowButtons: '0',
+  scrollPadding: '5',
+  scrollColor: '#fafafa',
+
+  decimalSeparator: '.',
+
+  anchorBgColor: '#d3f7ff',
+  anchorRadius: '4',
+  anchorBorderThickness: '1',
+};

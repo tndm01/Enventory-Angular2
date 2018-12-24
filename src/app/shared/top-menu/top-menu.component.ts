@@ -51,9 +51,10 @@ export class TopMenuComponent implements OnInit {
     this._signalRService.announcementReceived.subscribe((announcement: any) => {
       this._ngZone.run(() => {
         moment.locale('vi');
-        //announcement.Created = moment(announcement.Created).fromNow();
-        console.log(announcement);
         self.announcements.push(announcement);
+        self.announcements.sort(function (a, b) {
+          return b.ID - a.ID;
+        });
       });
     });
   }
@@ -70,12 +71,10 @@ export class TopMenuComponent implements OnInit {
   private loadAnnouncements() {
     this._dataService.get('/api/log/getUnRead').subscribe((response: any) => {
       this.announcements = [];
-       moment.locale('vi');
+      moment.locale('vi');
       for (let item of response) {
-       //item.Created = moment(item.Created).fromNow();
         this.announcements.push(item);
       }
-
     });
   }
 }
